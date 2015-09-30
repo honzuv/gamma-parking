@@ -3,14 +3,27 @@
 <head>
 	<title>Gamma-parking</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=windows-1250">
-	<script type="text/javascript" src="httpreq.js"></script>
 	<script type="text/javascript" src="script.js"></script>
 	<link rel="STYLESHEET" href="style.css" type="text/css">
 </head>
-<body onload="load(); document.getElementById('progress').innerHTML='';" >
+<body  >
   <h1>Gama parking</h1>
+  
+  
 	<span id='progress' ><img src='progress.gif' alt='progress'></span>
 	<span id='soukr' >soukr</span>
 	<span id='sluz' >sluz</span>
+	
+  <form id=download action="http://to2parking.appspot.com/getvalue" method="post" enctype=application/x-www-form-urlencoded target="output">
+     <input type="hidden" name="tag" value="ID100PARK1" >
+     <input type="hidden" name="fmt" value="html">
+     <input type="submit" value="Get value">
+  </form>
+  <input type="submit" onclick="clicked();" value="send by JS" />
+  <iframe id='output' name='output'> </iframe> 
+	<script type="text/javascript">
+		$('output').addEventListener("load", handle);
+	</script>
 </body>
 </html>
+
