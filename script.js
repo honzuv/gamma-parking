@@ -29,7 +29,8 @@ function handle(data) {
 function timer(reset){
 	if (reset=='reset') counter=reloader;
 	else counter--; 
-	GE('timer').innerHTML=' . '+' . '.repeat(counter);
+	GE('timer').innerHTML='';
+	for (var i=0; i<counter; i++) GE('timer').innerHTML+='.';
 	if (counter==0) load();
-	else setTimeout(timer, 1000); 
+	else window.setTimeout(timer, 1000); 
 }   
