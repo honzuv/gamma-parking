@@ -1,0 +1,5 @@
+body				{background: black; color: white; font: normal bold 20px Arial;  margin:5px; text-align:center}
+
+.num				{font-size:100px; }
+.brick1			{ float:left; margin:10px; }
+.brick2			{ float:right; margin:10px; }
