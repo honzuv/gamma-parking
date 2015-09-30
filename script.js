@@ -1,8 +1,12 @@
 var $ = function(id) {return document.getElementById( id );};
-
+//document.getElementById('#myiframe').addEventListener("load", handle);
+//frame=document.getElementsByTagName("iframe")[0];
+//frame.addEventListener("load", handle);
+//onload="load();"		
 function load(){
 	$('soukr').innerHTML='spoustim dotaz';
-	create_http_request('http://to2parking.appspot.com/getvalue?tag=ID100PARK1&fmt=html&preventCache='+Math.random(), handle_download,'','POST');
+	clicked();
+	//request('http://to2parking.appspot.com/getvalue', handle_download,'','POST','tag=ID100PARK1&fmt=html' );
 }
 	
 function handle_download (responseText){
@@ -11,3 +15,13 @@ function handle_download (responseText){
 	setTimeout("load();", 5000);
 }
 
+		
+function clicked(){
+	$('download').submit();
+}
+
+
+
+function handle() {
+    $('soukr').innerHTML=$('output').contentWindow.document.innerHTML;
+}
