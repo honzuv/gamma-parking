@@ -1,27 +1,35 @@
-var $ = function(id) {return document.getElementById( id );};
-//document.getElementById('#myiframe').addEventListener("load", handle);
-//frame=document.getElementsByTagName("iframe")[0];
-//frame.addEventListener("load", handle);
-//onload="load();"		
-function load(){
-	$('soukr').innerHTML='spoustim dotaz';
-	clicked();
-	//request('http://to2parking.appspot.com/getvalue', handle_download,'','POST','tag=ID100PARK1&fmt=html' );
-}
-	
-function handle_download (responseText){
-	$('soukr').innerHTML=responseText;
-	$('progress').innerHTML='';
-	setTimeout("load();", 5000);
-}
+var GE = function(id) {return document.getElementById( id );};
+var counter;
+var reloader=30;
 
-		
-function clicked(){
-	$('download').submit();
+function load(){          
+    $.jsonp({
+        url: 'http://to2parking.appspot.com/getvalue',
+        type: 'POST',
+        data: 'tag=ID100PARK1',
+				dataType: 'json',
+				jsonp: 'jsoncallback',
+				callbackParameter: 'callback',
+        success: function(data, status) {handle(data);},
+       error: function(){
+            alert('nejde');
+       }
+   });
 }
 
-
-
-function handle() {
-    $('soukr').innerHTML=$('output').contentWindow.document.innerHTML;
+function handle(data) {
+ 	field=data[2].split(",") //replace(/\""\[]/gm,'');
+	GE('cas').innerHTML= field[0].slice(2,-1);
+	GE('soukr').innerHTML= field[2].slice(0,-1) ;
+	GE('sluz').innerHTML= field[1] ;
+  GE('progress').innerHTML='';
+	timer('reset');    
 }
+
+function timer(reset){
+	if (reset=='reset') counter=reloader;
+	else counter--; 
+	GE('timer').innerHTML=' . '+' . '.repeat(counter);
+	if (counter==0) load();
+	else setTimeout(timer, 1000); 
+}   
