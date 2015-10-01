@@ -1,6 +1,7 @@
 var GE = function(id) {return document.getElementById( id );};
 var counter;
-var reloader=15;
+var reloader=30;
+var timeoutHandle;
 
 function load(){          
     $.jsonp({
@@ -32,5 +33,5 @@ function timer(reset){
 	GE('timer').innerHTML='';
 	for (var i=0; i<counter; i++) GE('timer').innerHTML+='.';
 	if (counter==0) load();
-	else window.setTimeout(timer, 1000); 
+	else window.clearTimeout(timeoutHandle); timeoutHandle=window.setTimeout(timer, 1000); 
 }   
