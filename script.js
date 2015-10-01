@@ -12,9 +12,7 @@ function load(){
 				jsonp: 'jsoncallback',
 				callbackParameter: 'callback',
         success: function(data, status) {handle(data);},
-       error: function(){
-            alert('nejde');
-       }
+       error: function(){timer('reset');  alert('nejde'); }
    });
 }
 
@@ -23,7 +21,7 @@ function handle(data) {
 	GE('cas').innerHTML= field[0].slice(2,-1);
 	GE('soukr').innerHTML= field[2].slice(0,-1) ;
 	GE('sluz').innerHTML= field[1] ;
-  GE('progress').innerHTML='';
+  	GE('progress').innerHTML='';
 	timer('reset');    
 }
 
