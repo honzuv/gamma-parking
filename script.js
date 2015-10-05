@@ -1,6 +1,6 @@
 var GE = function(id) {return document.getElementById( id );};
 var counter;
-var reloader=30;
+var reloader=10;
 var timeoutHandle;
 
 function load(){          
